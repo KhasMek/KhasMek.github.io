@@ -1,0 +1,27 @@
+---
+layout: page
+title: Links
+header: Links
+group: navigation
+---
+{% include JB/setup %}
+
+<h2>External</h2>
+<h3>Social Networks</h3>
+    <ul>
+        <li>Github</li>
+        <ul>
+            <li><a href="https://github.com/KhasMek">Personal</a></li>
+            <li><a href="https://github.com/AOKP">AOKP</a></li>
+        </ul>
+        <li><a href="https://twitter.com/khasmek">Twitter</a></li>
+        <li><a href="https://plus.google.com/+KhasMek">Google Plus</a></li>
+    </ul>
+<hr>
+
+<h2>Internal</h2>
+<h3>All Site Pages</h3>
+<ul>
+{% assign pages_list = site.pages %}
+{% include JB/pages_list %}
+</ul>
