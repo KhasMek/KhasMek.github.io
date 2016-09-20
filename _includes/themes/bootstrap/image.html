@@ -1,0 +1,15 @@
+<!-- blog-entries class can be used here if img src is modified to p img src,
+     but I still need to move more of the liquid tags over to complete that
+      -->
+<div class="image-wrapper" >
+  {% if include.url %}
+    <a href="{{ site.url }}/{{ include.url }}" title="{{ include.title }}" target="_blank">
+    {% endif %}
+      <img src="{{ site.url }}/{{ include.img }}" alt="{{ include.title }}"/>
+    {% if include.url %}
+    </a>
+    {% endif %}
+    {% if include.caption %}
+      <p class="image-caption">{{ include.caption }}</p>
+  {% endif %}
+</div>
