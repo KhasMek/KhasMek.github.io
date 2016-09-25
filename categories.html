@@ -10,13 +10,34 @@ group: navigation
   {% assign categories_list = site.categories %}
   {% include JB/categories_list %}
 </ul>
+<hr>
 
-
-{% for category in site.categories %} 
-  <h2 id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h2>
-  <ul>
-    {% assign pages_list = category[1] %}  
-    {% include JB/pages_list %}
-  </ul>
+{% for category in site.categories %}
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title" id="{{ category[0] }}-ref">{{ category[0] | join: "/" }}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="list-group">
+        {% for page in category[1] %}
+        <div class="list-group-item">
+          <div class="row-action-primary">
+            <i class="mdi-action-settings"></i>
+          </div>
+          <div class="row-content">
+            <h4 class="list-group-item-heading">
+              <a href="{{ site.url }}{{ page.url }}">{{ page.title }}</a>
+              {% include JB/pages_list %}
+            </h4>
+            {% unless page.tagline == empty %}
+            <p class="list-group-item-text">{{ page.tagline }}</p>
+            {% endunless %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endfor %}
-
