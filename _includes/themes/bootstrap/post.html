@@ -2,50 +2,80 @@
   <h1>{{ page.title }} {% if page.tagline %}<small>{{page.tagline}}</small>{% endif %}</h1>
 </div>
 
-<div class="row post-full">
-  <div class="col-md-12">
-    <div class="date">
-      <span>{{ page.date | date_to_long_string }}</span>
+<div class="container post-full">
+  <div class="row">
+    <div class="col-md-8">
+      <div class="date">
+        <span>{{ page.date | date_to_long_string }}</span>
+      </div>
+      <div class="blog-entries">
+        {{ content }}
+      </div>
+
+      <hr>
     </div>
-    <div class="content">
-      {{ content }}
+
+    <div class="col-md-4">
+
+      {% unless page.well_title == empty %}
+      <div class="well">
+        <h4>{{ page.well_title }}</h4>
+          <p style="padding: 1em;">{{ page.well_body}}</p>
+        <p class="bs-component">
+          <a href="javascript:void(0)" class="btn btn-{{ page.well_button_color }}">{{ page.well_button_text }}</a><br>
+        </p>
+      </div>
+      {% endunless %}
+
+      {% unless page.categories == empty %}
+      <div class="well">
+        <h4>Categories</h4>
+        <div class="row">
+          <div class="col-lg-6">
+            <ul class="nav nav-pills">
+              {% assign categories_list = page.categories %}
+              {% include JB/categories_list %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endunless %}
+
+      {% unless page.tags == empty %}
+      <div class="well">
+        <h4>Tags</h4>
+        <div class="row">
+          <div class="col-lg-6">
+            <ul class="nav nav-pills">
+              {% assign tags_list = page.tags %}
+              {% include JB/tags_list %}
+            </ul>
+          </div>
+        </div>
+      </div>
+      {% endunless %}
+
     </div>
 
-    {% unless page.categories == empty %}
-    <br>
-    <h4>Categories</h4>
-      <ul class="nav nav-pills">
-	      <!-- <li><i class="icon-folder-open"></i></li> -->
-        {% assign categories_list = page.categories %}
-        {% include JB/categories_list %}
-      </ul>
-    {% endunless %}
-
-    {% unless page.tags == empty %}
-    <h4>Tags</h4>
-      <ul class="nav nav-pills">
-	      <!-- <li><i class="icon-tags"></i></li> -->
-        {% assign tags_list = page.tags %}
-        {% include JB/tags_list %}
-      </ul>
-    {% endunless %}
-
-    <hr>
-    
-    <ul class="pagination">
-      {% if page.previous %}
+    <div class="col-md-8 content">
+      <ul class="pagination">
+        {% if page.previous %}
         <li class="prev"><a href="{{ BASE_PATH }}{{ page.previous.url }}" title="{{ page.previous.title }}">&larr; Previous</a></li>
-      {% else %}
+        {% else %}
         <li class="prev disabled"><a>&larr; Previous</a></li>
-      {% endif %}
+        {% endif %}
         <li><a href="{{ BASE_PATH }}{{ site.JB.archive_path }}">Archive</a></li>
-      {% if page.next %}
+        {% if page.next %}
         <li class="next"><a href="{{ BASE_PATH }}{{ page.next.url }}" title="{{ page.next.title }}">Next &rarr;</a></li>
-      {% else %}
+        {% else %}
         <li class="next disabled"><a>Next &rarr;</a></li>
-      {% endif %}
-    </ul>
-    <hr>
-    {% include JB/comments %}
+        {% endif %}
+      </ul>
+      <hr>
+      {% include JB/comments %}
+    </div>
+
   </div>
+
+</div>
 </div>
