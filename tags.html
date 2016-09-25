@@ -7,15 +7,37 @@ group: navigation
 {% include JB/setup %}
 
 <ul class="nav nav-pills">
-  {% assign tags_list = site.tags %}  
+  {% assign tags_list = site.tags %}
   {% include JB/tags_list %}
 </ul>
+<hr>
 
-
-{% for tag in site.tags %} 
-  <h2 id="{{ tag[0] }}-ref">{{ tag[0] }}</h2>
-  <ul>
-    {% assign pages_list = tag[1] %}  
-    {% include JB/pages_list %}
-  </ul>
+{% for tag in site.tags %}
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title" id="{{ tag[0] }}-ref">{{ tag[0] }}</h3>
+    </div>
+    <div class="panel-body">
+      <div class="list-group">
+        {% for page in tag[1] %}
+        <div class="list-group-item">
+          <div class="row-action-primary">
+            <i class="mdi-action-settings"></i>
+          </div>
+          <div class="row-content">
+            <h4 class="list-group-item-heading">
+              <a href="{{ site.url }}{{ page.url }}">{{ page.title }}</a>
+              {% include JB/pages_list %}
+            </h4>
+            {% unless page.tagline == empty %}
+            <p class="list-group-item-text">{{ page.tagline }}</p>
+            {% endunless %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
 {% endfor %}
