@@ -14,7 +14,7 @@ Usage:
         => 'for post in site.posts reversed'
       2) Next make sure to change 'post.previous.date' to:
         => 'post.next.date'
-        
+
 -->{% endcomment %}
 
 {% if site.JB.posts_collate.provider == "custom" %}
@@ -25,28 +25,65 @@ Usage:
     {% capture this_month %}{{ post.date | date: "%B" }}{% endcapture %}
     {% capture next_year %}{{ post.previous.date | date: "%Y" }}{% endcapture %}
     {% capture next_month %}{{ post.previous.date | date: "%B" }}{% endcapture %}
-  
+
+
     {% if forloop.first %}
-      <h2>{{this_year}}</h2>
-      <h3>{{this_month}}</h3>
-      <ul>
+<div class="col-md-6">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h2 class="panel-title">{{this_year}}</h2>
+    </div>
+    <div class="panel-body">
+      <div class="list-group">
+        <div class="list-group-item">
+          <div class="row-action-primary">
+            <i class="mdi-action-settings"></i>
+          </div>
+          <div class="row-content">
+            <h3 class="list-group-item-heading">{{this_month}}</h3>
+          </div>
     {% endif %}
-  
-    <li><span>{{ post.date | date: "%B %e, %Y" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
-  
-    {% if forloop.last %}
-      </ul>
-    {% else %}
-      {% if this_year != next_year %}
-        </ul>
-        <h2>{{next_year}}</h2>
-        <h3>{{next_month}}</h3>
-        <ul>
-      {% else %}    
-        {% if this_month != next_month %}
-          </ul>
-          <h3>{{next_month}}</h3>
-          <ul>
+            <li><span class="list-group-item-text">{{ post.date | date: "%B %e, %Y" }}</span> &raquo; <a href="{{ BASE_PATH }}{{ post.url }}">{{ post.title }}</a></li>
+
+          {% if forloop.last %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          {% else %}
+          {% if this_year != next_year %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+          <div class="col-md-6">
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <h2 class="panel-title">{{next_year}}</h2>
+            </div>
+            <div class="panel-body">
+              <div class="list-group">
+                <div class="list-group-item">
+                  <div class="row-action-primary">
+                    <i class="mdi-action-settings"></i>
+                  </div>
+                  <div class="row-content">
+                    <h3 class="list-group-item-heading">{{next_month}}</h3>
+                  </div>
+          {% else %}
+          {% if this_month != next_month %}
+        </div>
+          <div class="list-group-item">
+            <div class="row-action-primary">
+              <i class="mdi-action-settings"></i>
+            </div>
+            <div class="row-content">
+              <h3 class="list-group-item-heading">{{next_month}}</h3>
+            </div>
         {% endif %}
       {% endif %}
     {% endif %}
