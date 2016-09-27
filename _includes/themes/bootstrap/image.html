@@ -11,5 +11,7 @@
   </a>
   {% if include.caption %}
     <p class="image-caption">{{ include.caption }}</p>
+  {% else %}
+    <p class="image-caption">{{ include.title }}</p>
   {% endif %}
 </div>
