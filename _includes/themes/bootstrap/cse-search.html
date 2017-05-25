@@ -1,0 +1,26 @@
+<!-- Layout for Google Custom Search Engines -->
+<div class="col-md-6">
+<!--     {% if include.title %}
+        <h3 class="panel-title">{{ include.title }}</h3>
+    {% endif %} -->
+    <div class="well">
+        <form target="_blank" class="input-group" id="searchform" action="http://www.google.com/cse">
+            <input type="hidden" name="cx" value="017124518935314632248:{{ include.cx }}" />
+            <input type="hidden" name="ie" value="UTF-8" />
+            {% if include.placeholder %}
+                <input type="text" class="form-control" placeholder="Search {{ include.placeholder }}" name="query" id="search-box" autocomplete="on" />
+            {% elsif include.title %}
+                <input type="text" class="form-control" placeholder="Search {{ include.title }}" name="query" id="search-box" autocomplete="on" />
+            {% else %}
+                <input type="text" class="form-control" placeholder="Search" name="query" id="search-box" autocomplete="on" />
+            {% endif %}
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit" >
+                    <span class="glyphicon glyphicon-search"></span>
+                </button>
+            </span>
+        </form>
+    </div>
+</div>
+
+
